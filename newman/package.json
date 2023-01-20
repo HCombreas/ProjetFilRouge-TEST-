@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/HCombreas/ProjetFilRouge-TEST-/issues"
   },
-  "homepage": "https://github.com/HCombreas/ProjetFilRouge-TEST-#readme"
+  "homepage": "https://github.com/HCombreas/ProjetFilRouge-TEST-#readme",
+  "dependencies": {
+    "newman": "^5.3.2"
+  }
 }
