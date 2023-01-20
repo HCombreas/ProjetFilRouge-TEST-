@@ -16,3 +16,4 @@ node {
                 sh 'export PATH=$PATH:/usr/bin/npm'
             }
 }
+}
