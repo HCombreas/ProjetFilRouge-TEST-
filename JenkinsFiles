@@ -1,22 +1,11 @@
 pipeline {
     agent any
-    stages {
-        stage('SCM') {
-            steps {
-                checkout scm
-            }
-        }
-        stage('SonarQube Analysis') {
-            environment{
-                scannerHome = tool 'SonarqubeScanner'
-                SONAR_API_TOKEN=credentials('test')
-            }
-            steps {
-                script {
-            
-                    sh "$scannerHome/bin/sonar-scanner"
-                }
-            }
-        }
-    }
+stages {
+stage ('run collection') {
+steps {
+sh 'docker run -t postman/newman run -h'
+sh 'docker run -v run collection-1.json --color off --disable-unicode'
+}
+}
+}
 }
