@@ -1,17 +1,16 @@
-version: '2'
+version: '3'
+
 
 services:
-
   jenkins:
-    image: jenkinsci/docker:dind
-    volumes:
-       - jenkins_data:/var/jenkins_home
-       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - sonarnet
+    image: custom-jenkins-docker:latest
     ports:
-      - '8080:8080'
-      - '50000:50000'
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "jenkins_home:/var/jenkins_home"
+
 
   sonarqube:
     image: sonarqube
