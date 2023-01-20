@@ -1,7 +1,6 @@
 pipeline {
     agent any
     stages {
-        
         stage('SCM') {
             steps {
                 checkout scm
@@ -9,8 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'apt install sudo'
-                sh 'apt install npm'
+                sh 'su -c "apt install npm"'
                 sh 'export PATH=$PATH:/usr/bin/npm'
             }
         }
@@ -24,4 +22,3 @@ pipeline {
         }
     }
 }
-
