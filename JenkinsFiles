@@ -1,18 +1,4 @@
 pipeline {
-    stages{
-    
-        stage('SCM') {
-                checkout scm
-        }
-    
-        stage('SonarQube Analysis') {
-                def scannerHome = tool 'SonarqubeScanner'
-                withSonarQubeEnv() {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        
-    }      
     agent {
         node {
             label 'my-node'
@@ -22,9 +8,22 @@ pipeline {
         PATH = "${tool 'npm'}/bin:$PATH"
     }
     stages {
+        stage('SCM') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
                 sh 'npm install'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                def scannerHome = tool 'SonarqubeScanner'
+                withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
     }
