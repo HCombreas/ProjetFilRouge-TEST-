@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "9127fef6-de2b-43ac-bacb-51cbb92c2e93",
+		"name": "ProjetfilRougeCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25433148"
+	},
+	"item": [],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Code Retour 200\",function(){",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Temps de réponse inférieur a 400ms\", function(){",
+					"pm.expect(pm.response.responseTime).to.be.below(400);",
+					"});",
+					"",
+					"pm.test(\"Réponse Json n'est pas vide\", function(){",
+					"    pm.expect(pm.response).to.be.json;",
+					"});",
+					"",
+					"pm.test(\"userId est egale a 1\", function(){",
+					"    var jsonRes = pm.response.json();",
+					"    pm.expect(jsonRes.userId).to.eq(1);",
+					"});"
+				]
+			}
+		}
+	]
+}
