@@ -8,4 +8,9 @@ node {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
+            stage('install npm'){
+                steps {
+                    sh'apt install npm'
+                }
+            }
 }
