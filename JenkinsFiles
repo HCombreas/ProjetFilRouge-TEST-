@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        PATH = "${tool 'npm'}/bin:$PATH"
-    }
     stages {
         stage('SCM') {
             steps {
@@ -12,6 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'apt install npm'
+                sh 'export PATH=$PATH:/usr/bin/npm'
             }
         }
         stage('SonarQube Analysis') {
