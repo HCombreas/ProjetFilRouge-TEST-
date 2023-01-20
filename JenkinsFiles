@@ -8,8 +8,9 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarqubeScanner') {
-                    sh "${tool 'SonarqubeScanner'}/bin/sonar-scanner"
+                script {
+                    def scannerHome = tool 'SonarqubeScanner'
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
