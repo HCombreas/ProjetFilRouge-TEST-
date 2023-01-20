@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-       any
-    }
+    agent any
     environment {
         PATH = "${tool 'npm'}/bin:$PATH"
     }
