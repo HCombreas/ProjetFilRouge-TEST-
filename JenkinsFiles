@@ -9,6 +9,7 @@ pipeline {
         stage('SonarQube Analysis') {
             environment{
                 scannerHome = tool 'SonarqubeScanner'
+                SONAR_API_TOKEN=credentials('test')
             }
             steps {
                 script {
