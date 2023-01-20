@@ -8,9 +8,21 @@ node {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
-            stage('install npm'){
-                steps {
-                    sh'apt install npm'
-                }
+}
+pipeline {
+    agent {
+        node {
+            label 'my-node'
+        }
+    }
+    environment {
+        PATH = "${tool 'npm'}/bin:$PATH"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
             }
+        }
+    }
 }
