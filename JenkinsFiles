@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'apt-get install npm'
+                sh 'apt-get -y install npm'
                 sh 'export PATH=$PATH:/usr/bin/npm'
             }
         }
