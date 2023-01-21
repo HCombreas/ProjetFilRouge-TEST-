@@ -15,7 +15,7 @@ pipeline {
                     
             }
             steps{
-                sh 'yarn install npm'
+                sh 'yarn add npm'
             }
         }
         stage('SonarQube Analysis') {
