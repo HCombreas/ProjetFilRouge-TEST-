@@ -15,7 +15,7 @@ pipeline {
                     
             }
             steps{
-                sh 'apk add npm'
+                sh 'apt-get -y install npm'
                 sh 'npm install -g newman'
                 sh 'newman run newman/mycollection.json -e newman/myenvironment.json'
             }
