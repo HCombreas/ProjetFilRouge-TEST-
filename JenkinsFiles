@@ -6,6 +6,12 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build') {
+            steps {
+                sh 'apt-get install npm'
+                sh 'export PATH=$PATH:/usr/bin/npm'
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 script {
