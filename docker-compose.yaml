@@ -10,6 +10,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "jenkins_home:/var/jenkins_home"
+    networks:
+      - sonarnet
 
 
   sonarqube:
@@ -41,3 +43,4 @@ volumes:
   postgresql:
   postgresql_data:
   jenkins_data:
+  jenkins_home:
