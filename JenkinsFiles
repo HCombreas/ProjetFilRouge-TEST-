@@ -7,13 +7,15 @@ pipeline {
             }
         }
         stage('Docker node test') {
-            agent any {
+            agent {
+                docker{
                     image 'node:lts-bullseye-slim'
                     args '-p 3000:3000'
+                }
+                    
             }
             steps{
-                sh 'apt-get update && apt-get install -y npm'
-                sh 'npm install'
+                sh 'apt-get install -y npm'
             }
         }
         stage('SonarQube Analysis') {
