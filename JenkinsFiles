@@ -17,7 +17,7 @@ pipeline {
             steps{
                 sh 'yarn add npm'
                 sh 'npm install -g newman'
-                sh 'newman run newman/mycollection.json -e newman/myenvironment.json'
+                sh 'newman run newman/ProjetfilRougeCollection.postman_collection.json -e newman/EnvFilRouge.postman_environment.json'
             }
         }
       
