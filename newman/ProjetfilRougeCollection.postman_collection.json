@@ -5,7 +5,16 @@
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25433148"
 	},
-	"item": [],
+	"item": [
+		{
+			"name": "simple test",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
 	"event": [
 		{
 			"listen": "prerequest",
