@@ -5,7 +5,7 @@ import mysql.connector
 app = Flask(__name__)
 
 # Connect to Redis database
-redis_db = redis.Redis(host="dockerfileapp_redis_1", port=6379)
+redis_db = redis.Redis(host="redis", port=6379)
 
 # Connect to MySQL database
 mysql_db = mysql.connector.connect(
@@ -29,7 +29,7 @@ def index():
     return f"""
         <html>
             <body>
-                <h1>Tu est le visiteur n°  {visits}.</h1>
+                <h1>Tu est le visiteur n  {visits}.</h1>
                 <p>Dernier messages :</p>
                 <ul>
                     {

@@ -8,8 +8,14 @@ services:
    environment:
      MYSQL_ROOT_PASSWORD: password
      MYSQL_DATABASE: database
+   volumes:
+      - database:/var/lib/mysql  
    ports:
       - '3306:3306'
+   
+
+   networks:
+      - sonarnet
   
   python:
     image: custom_python:latest
@@ -18,15 +24,17 @@ services:
       - db
       - redis
     volumes:
-      - ./app:/app
+      - app:/app
     ports:
       - '5000:5000'
+    networks:
+      - sonarnet    
 
   prometheus:
      image: "prom/prometheus:v2.8.0"
      command: ["--config.file=/prometheus.yml"]
      volumes:
-       - ./prometheus.yaml:/prometheus.yml
+       - prometheus:/prometheus.yml
      ports:
        - 9090:9090
      networks:
@@ -37,6 +45,8 @@ services:
   redis:
     image: "redislabs/redistimeseries:edge"
     restart: always
+    volumes:
+      - redis-data:/data
     ports:
       - "6379:6379"
     networks:
@@ -51,3 +61,9 @@ services:
 networks:
   sonarnet:
     driver: bridge     
+
+volumes:
+  database:
+  redis-data:
+  app:
+  prometheus:
