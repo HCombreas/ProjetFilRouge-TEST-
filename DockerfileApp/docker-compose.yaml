@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: database
+  python:
+    image: custom_python:latest
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/database
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app
+
+  prometheus:
+     image: "prom/prometheus:v2.8.0"
+     command: ["--config.file=/prometheus.yml"]
+     volumes:
+       - ./prometheus.yaml:/prometheus.yml
+     ports:
+       - 9090:9090
+     networks:
+       - sonarnet
+  adapter:
+    image: "redislabs/prometheus-redistimeseries-adapter:master"
+    command: ["-redis-address", "redis:6379", "-web.listen-address", "0.0.0.0:9201"]
+  redis:
+    image: "redislabs/redistimeseries:edge"
+    ports:
+      - "6379:6379"
+    networks:
+      - sonarnet
+  grafana:
+    build: ./grafana/
+    ports:
+      - "3000:3000"
+    networks:
+      - sonarnet
+
+networks:
+  sonarnet:
+    driver: bridge     
