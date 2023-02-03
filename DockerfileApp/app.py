@@ -8,10 +8,11 @@ app = Flask(__name__)
 redis_db = redis.Redis(host="redis", port=6379)
 
 # Connect to MySQL database
+
 mysql_db = mysql.connector.connect(
     host="db",
     port="3306",
-    user="root",
+    user="user",
     password="password",
     database="database"
 )

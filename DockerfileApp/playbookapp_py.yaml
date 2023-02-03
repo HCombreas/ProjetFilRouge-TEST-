@@ -1,0 +1,19 @@
+- name: Stop, rebuild, and restart Docker containers
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Stop running container
+      command: docker stop dockerfileapp_python_1
+    
+    - name: Remove container
+      command: docker rm dockerfileapp_python_1
+
+    - name: Remove old custom_python:latest image
+      command: docker rmi custom_python:latest
+
+    - name: Build new image from Dockerfile
+      command: docker build -t custom_python:latest .
+
+    - name: Start containers with docker-compose up
+      command: docker-compose up

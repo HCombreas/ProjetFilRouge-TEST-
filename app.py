@@ -5,14 +5,17 @@ import mysql.connector
 app = Flask(__name__)
 
 # Connect to Redis database
-redis_db = redis.Redis(host="localhost", port=6379)
+redis_db = redis.Redis(host="redis", port=6379)
 
 # Connect to MySQL database
+
 mysql_db = mysql.connector.connect(
-    host="localhost",
-    user="app",
+    host="db",
+    port="3306",
+    user="user",
     password="",
-    database="test"
+    database="database",
+    auth_plugin="mysql_native_password"
 )
 
 @app.route("/")
@@ -28,7 +31,7 @@ def index():
     return f"""
         <html>
             <body>
-                <h1>Tu est le visiteur n°  {visits}.</h1>
+                <h1>Tu est le visiteur n  {visits}.</h1>
                 <p>Dernier messages :</p>
                 <ul>
                     {
