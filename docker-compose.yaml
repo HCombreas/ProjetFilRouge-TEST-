@@ -23,17 +23,6 @@ services:
     ports:
       - '9000:9000'
 
-  db:
-    image: postgres
-    networks:
-      - sonarnet
-    environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
-    volumes:
-      - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
-
 networks:
   sonarnet:
     driver: bridge
